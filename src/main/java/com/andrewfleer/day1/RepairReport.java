@@ -22,7 +22,7 @@ public class RepairReport {
         }
     }
 
-    private static Integer multiplyFoundNumbers(Integer[] desiredNumbers) {
+    public static Integer multiplyFoundNumbers(Integer[] desiredNumbers) {
         Integer size = desiredNumbers.length;
         Integer product = 1;
         for (int i = 0; i < size; i++) {
@@ -32,7 +32,7 @@ public class RepairReport {
         return product;
     }
 
-    private static Integer[] findTwoNumbersThatEqualSum(List inputs, int desiredValue) {
+    public static Integer[] findTwoNumbersThatEqualSum(List inputs, int desiredValue) {
         Object[] inputArray = inputs.toArray();
         Integer[] foundNumbers = null;
 
@@ -49,7 +49,7 @@ public class RepairReport {
         return foundNumbers;
     }
 
-    private static Integer[] findThreeNumbersThatEqualSum(List inputs, int desiredValue) {
+    public static Integer[] findThreeNumbersThatEqualSum(List inputs, int desiredValue) {
         Object[] inputArray = inputs.toArray();
         Integer[] foundNumbers = null;
 
