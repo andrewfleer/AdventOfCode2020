@@ -1,4 +1,4 @@
-package com.andrewfleer.day1;
+package utils;
 
 import com.andrewfleer.utils.FileUtil;
 import org.junit.Test;
