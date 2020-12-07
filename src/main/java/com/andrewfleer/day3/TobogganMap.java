@@ -2,12 +2,12 @@ package com.andrewfleer.day3;
 
 import com.andrewfleer.utils.FileUtil;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 
 public class TobogganMap {
     private static final String fileName = "day3Input.txt";
-    static int distanceX = 3;
-    static int distanceY = 1;
 
     public static void main(String[] args) {
         FileUtil fileUtil = new FileUtil();
@@ -18,8 +18,18 @@ public class TobogganMap {
             
             char[][] map = convertToMap(inputs);
 
-            int trees = traverseMap(map);
-            System.out.println(trees);
+            int trees1 = traverseMap(map,1,1);
+            int trees2 = traverseMap(map, 3, 1);
+            int trees3 = traverseMap(map, 5,1);
+            int trees4 = traverseMap(map, 7, 1);
+            int trees5 = traverseMap(map, 1, 2);
+
+            BigDecimal totalTrees = new BigDecimal(trees1)
+                                    .multiply(new BigDecimal(trees2))
+                                    .multiply(new BigDecimal(trees3))
+                                    .multiply(new BigDecimal(trees4))
+                                    .multiply(new BigDecimal(trees5));
+            System.out.println(totalTrees);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -35,7 +45,7 @@ public class TobogganMap {
         return map;
     }
 
-    public static int traverseMap(char[][] map) {
+    public static int traverseMap(char[][] map, int distanceX, int distanceY) {
         int trees = 0;
 
         // Initialize toboggan
@@ -50,6 +60,11 @@ public class TobogganMap {
             for (int i = 0; i < height - 1; i++) {
                 tobogganX = tobogganX + distanceX;
                 tobogganY = tobogganY + distanceY;
+
+                // If we went off the map, just quit
+                if (tobogganY > height - 1) {
+                    break;
+                }
 
                 // If we went too far to the right,
                 // loop around and start over.

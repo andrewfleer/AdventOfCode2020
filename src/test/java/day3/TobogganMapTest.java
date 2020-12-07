@@ -41,7 +41,7 @@ public class TobogganMapTest {
 
     @Test
     public void testTraversal() {
-        int trees = tobogganMap.traverseMap(testMap);
+        int trees = tobogganMap.traverseMap(testMap, 3, 1);
 
         assert(trees == 3);
     }
