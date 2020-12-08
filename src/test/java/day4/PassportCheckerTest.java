@@ -31,12 +31,12 @@ public class PassportCheckerTest {
     private void createGoodPassport() {
         goodPassport = new Passport();
         goodPassport.setPassportId("ABC123");
-        goodPassport.setBirthYear("19870717");
-        goodPassport.setIssueYear("20201207");
-        goodPassport.setExpirationYear("20301207");
-        goodPassport.setEyeColor("BLUE");
-        goodPassport.setHairColor("BROWN");
-        goodPassport.setHeight("70");
+        goodPassport.setBirthYear("1971");
+        goodPassport.setIssueYear("2012");
+        goodPassport.setExpirationYear("2028");
+        goodPassport.setEyeColor("BLU");
+        goodPassport.setHairColor("#12345a");
+        goodPassport.setHeight("70in");
     }
 
     @Test
