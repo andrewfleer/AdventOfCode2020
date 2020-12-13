@@ -17,7 +17,7 @@ public class CustomsForm {
             List inputs = fileUtil.readFileToList(fileName);
 
             List groups = createCustomsGroups(inputs);
-            List<Integer> yesses = getYessesPerGroup(groups);
+            List<Integer> yesses = getUnanimousYessesPerGroup(groups);
 
             Integer total = sumTotal(yesses);
 
@@ -50,11 +50,34 @@ public class CustomsForm {
         return yesses;
     }
 
+    public static List<Integer> getUnanimousYessesPerGroup(List<List> groups) {
+        List<Integer> yesses = new ArrayList<Integer>();
+
+        for (List<String> groupData : groups) {
+            Map<Character, Integer> yesMap = buildYesMap(groupData);
+            Integer unanimousCount = 0;
+
+            for (Map.Entry<Character, Integer> entry : yesMap.entrySet()) {
+                if (entry.getValue() == groupData.size()) {
+                    unanimousCount++;
+                }
+            }
+            yesses.add(unanimousCount);
+        }
+
+        return yesses;
+    }
+
     public static Map buildYesMap(List<String> groupData) {
-        Map yesMap = new HashMap();
+        Map<Character, Integer> yesMap = new HashMap();
         for (String groupDatum : groupData) {
             for (int i = 0; i < groupDatum.length(); i++) {
-                yesMap.put(groupDatum.charAt(i), 'Y');
+                Integer count = yesMap.get(groupDatum.charAt(i));
+                if (count == null) {
+                    yesMap.put(groupDatum.charAt(i),1);
+                } else {
+                    yesMap.put(groupDatum.charAt(i), count + 1);
+                }
             }
         }
 

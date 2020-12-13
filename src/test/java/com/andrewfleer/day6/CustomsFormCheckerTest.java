@@ -64,6 +64,26 @@ public class CustomsFormCheckerTest {
     }
 
     @Test
+    public void testUnanimousYessesPerGroup() {
+        List<List> testGroupList = new ArrayList<>();
+        List<String> group1 = new ArrayList<>();
+        group1.add("abcde");
+        group1.add("baeh");
+
+        List<String> group2 = new ArrayList<>();
+        group2.add("abcdefghijklmnopqrstuvwxyz");
+
+        testGroupList.add(group1);
+        testGroupList.add(group2);
+
+        List<Integer> yesList = customsForm.getUnanimousYessesPerGroup(testGroupList);
+
+        assert(2 == yesList.size()
+                && 3 == yesList.get(0)
+                && 26 == yesList.get(1));
+    }
+
+    @Test
     public void testSumTotal() {
         List<Integer> testList = new ArrayList<>();
 
