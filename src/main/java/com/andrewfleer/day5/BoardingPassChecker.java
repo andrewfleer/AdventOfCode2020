@@ -5,6 +5,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class BoardingPassChecker {
@@ -28,8 +29,9 @@ public class BoardingPassChecker {
 
             List<Integer> seats = getSeats(inputs);
             int maxSeat = findMaxSeat(seats);
+            int mySeat = findMySeat(seats);
 
-            System.out.println(maxSeat);
+            System.out.println(mySeat);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -37,14 +39,14 @@ public class BoardingPassChecker {
 
     public static void buildRowArray() {
         rowArray = new int[maxRow];
-        for (int i = 0; i < maxRow - 1; i++) {
+        for (int i = 0; i < maxRow; i++) {
             rowArray[i] = i;
         }
     }
 
     public static void buildColumnArray() {
         columnArray = new int[maxColumn];
-        for(int i = 0; i < maxColumn - 1; i++) {
+        for(int i = 0; i < maxColumn; i++) {
             columnArray[i] = i;
         }
     }
@@ -134,13 +136,29 @@ public class BoardingPassChecker {
     }
 
     public static int findMaxSeat(List<Integer> seats) {
-        int maxSeat = 0;
-        for (Integer seat : seats) {
-            if (seat > maxSeat) {
-                maxSeat = seat;
+        Collections.sort(seats);
+
+        return(seats.get(seats.size() - 1));
+    }
+
+    public static int findMySeat(List<Integer> seats) {
+        int mySeat = 0;
+
+        Collections.sort(seats);
+        for (int i = 0; i < seats.size(); i++) {
+            int currentSeat = seats.get(i);
+            try {
+                int nextSeat = seats.get(i + 1);
+
+                if ((nextSeat - currentSeat) > 1) {
+                    mySeat = currentSeat + 1;
+                    break;
+                }
+            } catch (IndexOutOfBoundsException iobe) {
+                mySeat = currentSeat + 1;
+                return mySeat;
             }
         }
-
-        return maxSeat;
+        return mySeat;
     }
 }

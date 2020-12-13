@@ -84,4 +84,16 @@ public class BoardingPassCheckerTest {
 
         assert(5 == boardingPassChecker.findMaxSeat(seats));
     }
+
+    @Test
+    public void testFindMySeat() {
+        List<Integer> seats = new ArrayList<Integer>();
+        seats.add(1);
+        seats.add(4);
+        seats.add(5);
+        seats.add(2);
+        seats.add(0);
+
+        assert(3 == boardingPassChecker.findMySeat(seats));
+    }
 }
