@@ -1,4 +1,4 @@
-package day4;
+package com.andrewfleer.day4;
 
 import com.andrewfleer.day4.Passport;
 import org.junit.Before;

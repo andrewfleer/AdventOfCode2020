@@ -1,4 +1,4 @@
-package day2;
+package com.andrewfleer.day2;
 
 import com.andrewfleer.day2.PasswordChecker;
 import org.junit.Before;

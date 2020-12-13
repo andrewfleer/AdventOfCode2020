@@ -1,4 +1,4 @@
-package day3;
+package com.andrewfleer.day3;
 
 import com.andrewfleer.day3.TobogganMap;
 import org.junit.Before;
